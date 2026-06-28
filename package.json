@@ -1,0 +1,15 @@
+{
+  "name": "couplelodo",
+  "version": "1.0.0",
+  "description": "Online multiplayer Ludo game",
+  "scripts": {
+    "build": "cd client && npm install && npx vite build",
+    "start": "cd server && NODE_ENV=production node src/index.js",
+    "dev:server": "cd server && node src/index.js",
+    "dev:client": "cd client && npx vite",
+    "dev": "npm run dev:server & npm run dev:client"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
