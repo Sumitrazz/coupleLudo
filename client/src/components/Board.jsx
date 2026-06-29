@@ -13,17 +13,17 @@ const COL = {
 // 52-cell clockwise path (row, col), index 0 = red start (top-left arm).
 // Matches engine START_POSITIONS: red=0, green=13, yellow=26, blue=39.
 const PATH = [
-  [6,1],[6,2],[6,3],[6,4],[6,5],          // 0-4   red start, â
-  [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],    // 5-10 â left of top arm
+  [6,1],[6,2],[6,3],[6,4],[6,5],          // 0-4   red start, →
+  [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],    // 5-10  ↑ left of top arm
   [0,7],[0,8],                            // 11-12 top crossover
-  [1,8],[2,8],[3,8],[4,8],[5,8],          // 13-17 green start, â
-  [6,9],[6,10],[6,11],[6,12],[6,13],[6,14], // 18-23 â right arm top
+  [1,8],[2,8],[3,8],[4,8],[5,8],          // 13-17 green start, ↓
+  [6,9],[6,10],[6,11],[6,12],[6,13],[6,14], // 18-23 → right arm top
   [7,14],[8,14],                          // 24-25 right crossover
-  [8,13],[8,12],[8,11],[8,10],[8,9],      // 26-30 yellow start, â
-  [9,8],[10,8],[11,8],[12,8],[13,8],[14,8], // 31-36 â right of bottom arm
+  [8,13],[8,12],[8,11],[8,10],[8,9],      // 26-30 yellow start, ←
+  [9,8],[10,8],[11,8],[12,8],[13,8],[14,8], // 31-36 ↓ right of bottom arm
   [14,7],[14,6],                          // 37-38 bottom crossover
-  [13,6],[12,6],[11,6],[10,6],[9,6],      // 39-43 blue start, â
-  [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],    // 44-49 â left arm bottom
+  [13,6],[12,6],[11,6],[10,6],[9,6],      // 39-43 blue start, ↑
+  [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],    // 44-49 ← left arm bottom
   [7,0],                                  // 50    red lane entry
   [6,0],                                  // 51    final crossover
 ];
@@ -33,10 +33,10 @@ const START_IDX = { red: 0, green: 13, yellow: 26, blue: 39 };
 
 // Home lanes (6 colored cells from edge toward center), per corner.
 const HOME_LANE = {
-  red:    (i) => [7, 1 + i],   // mid-left,   â
-  green:  (i) => [1 + i, 7],   // mid-top,   â
-  yellow: (i) => [7, 13 - i],  // mid-right, â
-  blue:   (i) => [13 - i, 7],  // mid-bottom,â
+  red:    (i) => [7, 1 + i],   // mid-left,  →
+  green:  (i) => [1 + i, 7],   // mid-top,   ↓
+  yellow: (i) => [7, 13 - i],  // mid-right, ←
+  blue:   (i) => [13 - i, 7],  // mid-bottom,↑
 };
 
 // Home bases (6x6 corner)
@@ -135,7 +135,7 @@ export default function Board({ gameState, myColor, validMoves, onTokenClick }) 
           textAnchor="middle" dominantBaseline="middle"
           transform={`rotate(${rot} ${cx} ${cy})`}
           fill="#c2c2c2" fontSize={16} fontWeight="bold"
-          style={{ pointerEvents: 'none' }}>âº</text>
+          style={{ pointerEvents: 'none' }}>›</text>
       );
     }
     return els;
@@ -144,10 +144,10 @@ export default function Board({ gameState, myColor, validMoves, onTokenClick }) 
   // Colored arrows pointing into each home lane
   const laneEntryArrows = () => {
     const arrows = [
-      { color: 'red',    cell: PATH[50], char: 'â' },
-      { color: 'green',  cell: PATH[11], char: 'â' },
-      { color: 'yellow', cell: PATH[24], char: 'â' },
-      { color: 'blue',   cell: PATH[37], char: 'â' },
+      { color: 'red',    cell: PATH[50], char: '→' },
+      { color: 'green',  cell: PATH[11], char: '↓' },
+      { color: 'yellow', cell: PATH[24], char: '←' },
+      { color: 'blue',   cell: PATH[37], char: '↑' },
     ];
     return arrows.map(({ color, cell, char }) => (
       <text key={`le-${color}`} x={cell[1]*C+C/2} y={cell[0]*C+C/2+2}
@@ -166,7 +166,7 @@ export default function Board({ gameState, myColor, validMoves, onTokenClick }) 
         <text key={`safe-${idx}`} x={c*C+C/2} y={r*C+C/2+1}
           textAnchor="middle" dominantBaseline="middle"
           fill={isStart ? 'rgba(255,255,255,0.85)' : '#9e9e9e'}
-          fontSize={19} style={{ pointerEvents: 'none' }}>â</text>
+          fontSize={19} style={{ pointerEvents: 'none' }}>★</text>
       );
     });
     return els;
