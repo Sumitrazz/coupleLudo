@@ -1,12 +1,14 @@
 const BOARD_SIZE = 52;
 
-const PLAYER_COLORS = ['red', 'blue', 'green', 'yellow'];
+// Classic board layout (clockwise corners): Red=TL, Green=TR, Yellow=BR, Blue=BL.
+// 2-player games get the diagonal pair (Red vs Yellow) for a face-off feel.
+const PLAYER_COLORS = ['red', 'yellow', 'green', 'blue'];
 
-const START_POSITIONS = { red: 0, blue: 13, green: 26, yellow: 39 };
+const START_POSITIONS = { red: 0, green: 13, yellow: 26, blue: 39 };
 
 const SAFE_SQUARES = [0, 8, 13, 21, 26, 34, 39, 47];
 
-const HOME_LANE_ENTRY = { red: 50, blue: 11, green: 24, yellow: 37 };
+const HOME_LANE_ENTRY = { red: 50, green: 11, yellow: 24, blue: 37 };
 
 const HOME_LANE_LENGTH = 6;
 
